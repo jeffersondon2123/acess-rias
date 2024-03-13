@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sugestão de Nome</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+    }
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 500px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    #classificacao {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 400px;
+    }
+    #classificacao h2 {
+        margin-top: 0;
+    }
+    #classificacao p {
+        margin-bottom: 0;
+    }
+</style>
+</head>
+<body>
+    <a href="index.html" id="link-com-div">
+        INICIO
+     </a>
+
+<form id="questionario" onsubmit="enviarRespostas(event)">
+    <label for="campo1">quantidade de cnpj (0-100):</label><br>
+    <input type="number" id="campo1" name="campo1" min="0" max="100" step="1" required/><br>
+
+    <label for="campo2">funcionarios?</label><br>
+    <input type="text" id="campo2" name="campo2" min="0" max="50" step="1" required/><br>
+
+    <label for="campo3"> gestão (explicação abaixo):</label><br>
+    <input type="text" id="campo3" name="campo3" min="0" max="50" step="1" required/><br>
+
+    <label for="campo4">socios (0-10) :</label><br>
+    <input type="text" id="campo4" name="campo4" min="0" max="60" step="1" required><br>
+
+    <input type="submit" value="Submeter"/>
+</form>
+
+<div id="classificacao">
+   
+    
+    <p><h2>Socios </h2>
+        - 0 a 10 = se nao tiver<br>
+        - 11 a 20 = se tem mas não á entrar no meet <br>
+        - 21+ = se o socio for participar da reunião
+     </p>
+    <h1>hierarquia </h1>
+    <h2>gestão <br>
+        socios <br>
+        funcionarios <br>
+        cnpjs
+    </p>
+</div>
+
+<script>
+function enviarRespostas(event) {
+    event.preventDefault(); // Impede o envio do formulário padrão
+
+    var votacao = {}
+
+    // Obtenha os valores dos campos de entrada
+    var campo1 = parseInt(document.getElementById("campo1").value);
+    var campo2 = (document.getElementById("campo2").value);
+    var campo3 = document.getElementById("campo3").value;
+    var campo4 = (document.getElementById("campo4").value);
+
+    // Função para sugerir nome com base no critério numérico
+    function sugerirNome (valor) {
+        // só a parte da de todas as variaveis dentro dos input
+        const nomes = {
+            1 : "Taffarel, rodrigo, icaro",
+            2 : "Taffarel, rodrigo, icaro",
+            3 : "Taffarel, rodrigo, icaro",
+            4 : "Taffarel, rodrigo, icaro",
+            5 : "Taffarel, rodrigo, icaro",
+            6 : "Taffarel, rodrigo, icaro",
+            7 : "Taffarel, rodrigo, icaro",
+            8 : "Taffarel, rodrigo, icaro",
+            9 : "Taffarel, rodrigo, icaro",
+            10 : "Taffarel, rodrigo, icaro",
+            11 : "Taffarel, rodrigo, icaro",
+            12 : "Taffarel, rodrigo, icaro",
+            13 : "Taffarel, rodrigo, icaro",
+            14 : "Taffarel, rodrigo, icaro",
+            15 : "Taffarel, rodrigo, icaro",
+            16 : "Taffarel, rodrigo, icaro",
+            17 : "Taffarel, rodrigo, icaro",
+            18 : "Taffarel, rodrigo, icaro",
+            19 : "Taffarel, rodrigo, icaro",
+            20 : "Taffarel, rodrigo, icaro",
+            21 : "Taffarel, rodrigo, icaro",
+            22 : "Roger, Jonathan, rafael",
+            23 : "Roger, Jonathan, rafael",
+            24 : "Roger, Jonathan, rafael",
+            25 : "Roger, Jonathan, rafael",
+            26 : "Roger, Jonathan, rafael",
+            27 : "Roger, Jonathan, rafael",
+            28 : "Roger, Jonathan, rafael",
+            29 : "Roger, Jonathan, rafael",
+            30 : "Roger, Jonathan, rafael",
+            31 : "Roger, Jonathan, rafael",
+            32 : "Roger, Jonathan, rafael",
+            33 : "Roger, Jonathan, rafael",
+            34 : "Roger, Jonathan, rafael",
+            35 : "Roger, Jonathan, rafael",
+            36 : "Roger, Jonathan, rafael",
+            37 : "Roger, Jonathan, rafael",
+            38 : "Roger, Jonathan, rafael",
+            39 : "Roger, Jonathan, rafael",
+            40 : "Roger, Jonathan, rafael",
+            41 :"Juliano, charles, igor, pedrete",
+            42 :"Juliano, charles, igor, pedrete",
+            43 :"Juliano, charles, igor, pedrete",
+            44 :"Juliano, charles, igor, pedrete",
+            45 :"Juliano, charles, igor, pedrete",
+            46 :"Juliano, charles, igor, pedrete",
+            47 :"Juliano, charles, igor, pedrete",
+            48 :"Juliano, charles, igor, pedrete",
+            49 :"Juliano, charles, igor, pedrete",
+            50 :"Juliano, charles, igor, pedrete",
+            51 :"Juliano, charles, igor, pedrete",
+            52 :"Juliano, charles, igor, pedrete",
+            53 :"Juliano, charles, igor, pedrete",
+            54 :"Juliano, charles, igor, pedrete",
+            55 :"Juliano, charles, igor, pedrete",
+            56 :"Juliano, charles, igor, pedrete",
+            57 :"Juliano, charles, igor, pedrete",
+            58 :"Juliano, charles, igor, pedrete",
+            59 :"Juliano, charles, igor, pedrete",
+            60 :"Juliano, charles, igor, pedrete",
+            61 : "Bessa, gabriel, enoque, pedro",
+            62 : "Bessa, gabriel, enoque, pedro",
+            63 : "Bessa, gabriel, enoque, pedro",
+            64 : "Bessa, gabriel, enoque, pedro",
+            65 : "Bessa, gabriel, enoque, pedro",
+            66 : "Bessa, gabriel, enoque, pedro",
+            67 : "Bessa, gabriel, enoque, pedro",
+            68 : "Bessa, gabriel, enoque, pedro",
+            69 : "Bessa, gabriel, enoque, pedro",
+            70 : "Bessa, gabriel, enoque, pedro",
+            71 : "Bessa, gabriel, enoque, pedro",
+            72 : "Bessa, gabriel, enoque, pedro",
+            73 : "Bessa, gabriel, enoque, pedro",
+            74 : "Bessa, gabriel, enoque, pedro",
+            75 : "Bessa, gabriel, enoque, pedro",
+            76 : "Bessa, gabriel, enoque, pedro",
+            77 : "Bessa, gabriel, enoque, pedro",
+            78 : "Bessa, gabriel, enoque, pedro",
+            79 : "Bessa, gabriel, enoque, pedro",
+            80 : "Bessa, gabriel, enoque, pedro",
+            81 : "Bessa, gabriel, enoque, pedro",
+            82 : "Claudio, marcos",
+            83 : "Claudio, marcos",
+            84 : "Claudio, marcos",
+            85 : "Claudio, marcos",
+            86 : "Claudio, marcos",
+            87 : "Claudio, marcos",
+            88 : "Claudio, marcos",
+            89 : "Claudio, marcos",
+            90 : "Claudio, marcos",
+            91 : "Claudio, marcos",
+            92 : "Claudio, marcos",
+            93 : "Claudio, marcos",
+            94 : "Claudio, marcos",
+            95 : "Claudio, marcos",
+            96 : "Claudio, marcos",
+            97 : "Claudio, marcos",
+            98 : "Claudio, marcos",
+            99 : "Claudio, marcos",
+            100 : "Claudio, marcos",
+            nao_tem : "Taffarel, rodrigo, icaro",
+            nibo : "Claudio, marcos",
+            onvio : "Bessa, gabriel, enoque, pedro",
+            pier : "Claudio, marcos",
+            tarefas : "Juliano, charles, igor, pedrete",
+            taskduo : "Bessa, gabriel, enoque, pedro",
+            gclick : "Bessa, gabriel, enoque, pedro",
+            sim :  "ok"
+        
+        
+        }
+      if (!votacao[nomes[valor]]){
+                votacao[nomes[valor]] = 1
+            }
+            else {
+
+                votacao[nomes[valor]] = votacao[nomes[valor]] + 1
+            
+            }
+
+
+        return nomes[valor]
+    }
+    const maxMinVal = (obj) => {
+  const sortedEntriesByVal = Object.entries(obj).sort(([, v1], [, v2]) => v1 - v2);
+
+  return {
+    min: sortedEntriesByVal[0],
+    max: sortedEntriesByVal[sortedEntriesByVal.length - 1],
+    sortedObjByVal: sortedEntriesByVal.reduce((r, [k, v]) => ({ ...r, [k]: v }), {}),
+  };
+};
+
+
+    // Sugestões de nomes com base nos critérios numéricos
+    var sugestao1 = sugerirNome(campo1);
+    var sugestao2 = sugerirNome(campo2);
+    var sugestao3 = sugerirNome(campo3);
+    var sugestao4 = sugerirNome(campo4);
+    var ganhador  = maxMinVal(votacao);
+ 
+    // Exibe as sugestões de nomes
+    alert("Sugestão de nome para Campo 1: " + sugestao1 +
+          "\nSugestão de nome para Campo 2: " + sugestao2 +
+          "\nSugestão de nome para Campo 3: " + sugestao3 +
+          "\nSugestão de nome para Campo 4: " + sugestao4);
+   
+          alert (ganhador ["max"][0])
+   
+}
+
+</script>
+
+</body>
+</html>
